@@ -1,0 +1,7 @@
+.spacer {
+  flex: 1 1 auto;
+}
+.top-toolbar {
+  background-color: var(--mdc-filled-button-container-color);
+  color: var(--mdc-filled-button-label-text-color);
+}

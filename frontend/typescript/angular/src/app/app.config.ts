@@ -2,6 +2,7 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { FusionAuthModule } from '@fusionauth/angular-sdk';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,5 +16,6 @@ export const appConfig: ApplicationConfig = {
         shouldAutoRefresh: true,
       }),
     ),
+    provideAnimationsAsync(),
   ],
 };

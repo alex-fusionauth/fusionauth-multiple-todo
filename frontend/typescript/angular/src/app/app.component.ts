@@ -2,11 +2,13 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FusionAuthService, UserInfo } from '@fusionauth/angular-sdk';
 import { Subscription } from 'rxjs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

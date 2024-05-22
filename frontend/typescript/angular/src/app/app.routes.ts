@@ -8,6 +8,14 @@ export const routes: Routes = [
       import('./home-page/home-page.component').then(
         (m) => m.HomePageComponent,
       ),
-    canActivate: [authGuard(false, '/account')],
+    canActivate: [authGuard(false, '/todo')],
+  },
+  {
+    path: 'todo',
+    loadComponent: () =>
+      import('./todo-page/todo-page.component').then(
+        (m) => m.TodoPageComponent,
+      ),
+    canActivate: [authGuard(true, '/')],
   },
 ];
