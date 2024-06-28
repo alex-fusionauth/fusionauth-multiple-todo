@@ -1,14 +1,18 @@
 {
   "variables": {
-    "applicationId": "e9fdb985-9173-4e01-9d73-ac2d60d1dc8e",
+    "todo1": "e9fdb985-9173-4e01-9d73-ac2d60d1dc8a",
+    "todo2": "e9fdb985-8675-4e01-9d73-ac2d60d1dc8b",
     "apiKey": "this_really_should_be_a_long_random_alphanumeric_value_but_this_still_works",
     "asymmetricKeyId": "#{UUID()}",
     "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
     "adminEmail": "admin@example.com",
     "adminPassword": "password",
-    "userEmail": "richard@example.com",
-    "userPassword": "password",
-    "userUserId": "00000000-0000-0000-0000-111111111111"
+    "todo1UserId": "#{UUID()}",
+    "todo1UserEmail": "richard@example.com",
+    "todo1UserPassword": "password",
+    "todo2UserId": "#{UUID()}",
+    "todo2UserEmail": "dinesh@example.com",
+    "todo2UserPassword": "password"
   },
   "apiKeys": [
     {
@@ -42,7 +46,8 @@
               "OPTIONS"
             ],
             "allowedOrigins": [
-              "http://localhost:4200"
+              "http://localhost:4200",
+              "http://localhost:3000"
             ],
             "debug": false,
             "enabled": true,
@@ -78,11 +83,11 @@
     },
     {
       "method": "POST",
-      "url": "/api/application/#{applicationId}",
+      "url": "/api/application/#{todo1}",
       "tenantId": "#{defaultTenantId}",
       "body": {
         "application": {
-          "name": "Frontend Application",
+          "name": "TODO_1",
           "oauthConfiguration": {
             "authorizedRedirectURLs": [
               "http://localhost:4200"
@@ -113,17 +118,68 @@
     },
     {
       "method": "POST",
-      "url": "/api/user/registration/#{userUserId}",
+      "url": "/api/user/registration/#{todo1UserId}",
       "body": {
         "user": {
           "birthDate": "1985-11-23",
-          "email": "#{userEmail}",
+          "email": "#{todo1UserEmail}",
           "firstName": "Richard",
           "lastName": "Hendricks",
-          "password": "#{userPassword}"
+          "password": "#{todo1UserPassword}"
         },
         "registration": {
-          "applicationId": "#{applicationId}"
+          "applicationId": "#{todo1}"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/application/#{todo2}",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "application": {
+          "name": "TODO_2",
+          "oauthConfiguration": {
+            "authorizedRedirectURLs": [
+              "http://localhost:3000"
+            ],
+            "authorizedOriginURLs": [
+              "http://localhost:3000"
+            ],
+            "clientSecret": "super-secret-secret-that-should-be-regenerated-for-production",
+            "logoutURL": "http://localhost:3000",
+            "enabledGrants": [
+              "authorization_code",
+              "refresh_token"
+            ],
+            "debug": true,
+            "generateRefreshTokens": true,
+            "requireRegistration": true
+          },
+          "jwtConfiguration": {
+            "enabled": true,
+            "accessTokenKeyId": "#{asymmetricKeyId}",
+            "idTokenKeyId": "#{asymmetricKeyId}"
+          },
+          "registrationConfiguration": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/#{todo2UserId}",
+      "body": {
+        "user": {
+          "birthDate": "1978-05-02",
+          "email": "#{todo2UserEmail}",
+          "firstName": "Dinesh",
+          "lastName": "Chugtai",
+          "password": "#{todo2UserPassword}"
+        },
+        "registration": {
+          "applicationId": "#{todo2}"
         }
       }
     }
