@@ -47,7 +47,7 @@
             ],
             "allowedOrigins": [
               "http://localhost:4200",
-              "http://localhost:3000"
+              "http://localhost:5173"
             ],
             "debug": false,
             "enabled": true,
@@ -141,13 +141,13 @@
           "name": "TODO_2",
           "oauthConfiguration": {
             "authorizedRedirectURLs": [
-              "http://localhost:3000"
+              "http://localhost:5173"
             ],
             "authorizedOriginURLs": [
-              "http://localhost:3000"
+              "http://localhost:5173"
             ],
             "clientSecret": "super-secret-secret-that-should-be-regenerated-for-production",
-            "logoutURL": "http://localhost:3000",
+            "logoutURL": "http://localhost:5173/logged-out",
             "enabledGrants": [
               "authorization_code",
               "refresh_token"
