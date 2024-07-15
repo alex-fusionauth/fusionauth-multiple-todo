@@ -1,7 +1,8 @@
 {
   "variables": {
-    "todo1": "e9fdb985-9173-4e01-9d73-ac2d60d1dc8a",
-    "todo2": "e9fdb985-8675-4e01-9d73-ac2d60d1dc8b",
+    "todoThemeId": "422c665a-e976-45f4-8f87-5b0fe01e4242",
+    "todo1ApplicationId": "e9fdb985-9173-4e01-9d73-ac2d60d1dc8a",
+    "todo2ApplicationId": "e9fdb985-8675-4e01-9d73-ac2d60d1dc8b",
     "apiKey": "this_really_should_be_a_long_random_alphanumeric_value_but_this_still_works",
     "asymmetricKeyId": "#{UUID()}",
     "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
@@ -83,7 +84,7 @@
     },
     {
       "method": "POST",
-      "url": "/api/application/#{todo1}",
+      "url": "/api/application/#{todo1ApplicationId}",
       "tenantId": "#{defaultTenantId}",
       "body": {
         "application": {
@@ -128,13 +129,13 @@
           "password": "#{todo1UserPassword}"
         },
         "registration": {
-          "applicationId": "#{todo1}"
+          "applicationId": "#{todo1ApplicationId}"
         }
       }
     },
     {
       "method": "POST",
-      "url": "/api/application/#{todo2}",
+      "url": "/api/application/#{todo2ApplicationId}",
       "tenantId": "#{defaultTenantId}",
       "body": {
         "application": {
@@ -179,7 +180,77 @@
           "password": "#{todo2UserPassword}"
         },
         "registration": {
-          "applicationId": "#{todo2}"
+          "applicationId": "#{todo2ApplicationId}"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/theme/#{todoThemeId}",
+      "body": {
+        "theme": {
+          "name": "TODO Theme",
+          "stylesheet": "@{TODO/stylesheet.css}",
+          "defaultMessages": "@{TODO/defaultMessages.txt}",
+          "templates": {
+            "accountEdit": "@{TODO/accountEdit.ftl}",
+            "accountIndex": "@{TODO/accountIndex.ftl}",
+            "accountTwoFactorDisable": "@{TODO/accountTwoFactorDisable.ftl}",
+            "accountTwoFactorEnable": "@{TODO/accountTwoFactorEnable.ftl}",
+            "accountTwoFactorIndex": "@{TODO/accountTwoFactorIndex.ftl}",
+            "accountWebAuthnAdd": "@{TODO/accountWebAuthnAdd.ftl}",
+            "accountWebAuthnDelete": "@{TODO/accountWebAuthnDelete.ftl}",
+            "accountWebAuthnIndex": "@{TODO/accountWebAuthnIndex.ftl}",
+            "confirmationRequired": "@{TODO/confirmationRequired.ftl}",
+            "emailComplete": "@{TODO/emailComplete.ftl}",
+            "emailSend": "@{TODO/emailSend.ftl}",
+            "emailSent": "@{TODO/emailSent.ftl}",
+            "emailVerificationRequired": "@{TODO/emailVerificationRequired.ftl}",
+            "emailVerify": "@{TODO/emailVerify.ftl}",
+            "helpers": "@{TODO/helpers.ftl}",
+            "index": "@{TODO/index.ftl}",
+            "oauth2Authorize": "@{TODO/oauth2Authorize.ftl}",
+            "oauth2AuthorizedNotRegistered": "@{TODO/oauth2AuthorizedNotRegistered.ftl}",
+            "oauth2ChildRegistrationNotAllowed": "@{TODO/oauth2ChildRegistrationNotAllowed.ftl}",
+            "oauth2ChildRegistrationNotAllowedComplete": "@{TODO/oauth2ChildRegistrationNotAllowedComplete.ftl}",
+            "oauth2CompleteRegistration": "@{TODO/oauth2CompleteRegistration.ftl}",
+            "oauth2Consent": "@{TODO/oauth2Consent.ftl}",
+            "oauth2Device": "@{TODO/oauth2Device.ftl}",
+            "oauth2DeviceComplete": "@{TODO/oauth2DeviceComplete.ftl}",
+            "oauth2Error": "@{TODO/oauth2Error.ftl}",
+            "oauth2Logout": "@{TODO/oauth2Logout.ftl}",
+            "oauth2Passwordless": "@{TODO/oauth2Passwordless.ftl}",
+            "oauth2Register": "@{TODO/oauth2Register.ftl}",
+            "oauth2StartIdPLink": "@{TODO/oauth2StartIdPLink.ftl}",
+            "oauth2TwoFactor": "@{TODO/oauth2TwoFactor.ftl}",
+            "oauth2TwoFactorEnable": "@{TODO/oauth2TwoFactorEnable.ftl}",
+            "oauth2TwoFactorEnableComplete": "@{TODO/oauth2TwoFactorEnableComplete.ftl}",
+            "oauth2TwoFactorMethods": "@{TODO/oauth2TwoFactorMethods.ftl}",
+            "oauth2Wait": "@{TODO/oauth2Wait.ftl}",
+            "oauth2WebAuthn": "@{TODO/oauth2WebAuthn.ftl}",
+            "oauth2WebAuthnReauth": "@{TODO/oauth2WebAuthnReauth.ftl}",
+            "oauth2WebAuthnReauthEnable": "@{TODO/oauth2WebAuthnReauthEnable.ftl}",
+            "passwordChange": "@{TODO/passwordChange.ftl}",
+            "passwordComplete": "@{TODO/passwordComplete.ftl}",
+            "passwordForgot": "@{TODO/passwordForgot.ftl}",
+            "passwordSent": "@{TODO/passwordSent.ftl}",
+            "registrationComplete": "@{TODO/registrationComplete.ftl}",
+            "registrationSend": "@{TODO/registrationSend.ftl}",
+            "registrationSent": "@{TODO/registrationSent.ftl}",
+            "registrationVerificationRequired": "@{TODO/registrationVerificationRequired.ftl}",
+            "registrationVerify": "@{TODO/registrationVerify.ftl}",
+            "samlv2Logout": "@{TODO/samlv2Logout.ftl}",
+            "unauthorized": "@{TODO/unauthorized.ftl}"
+          }
+        }
+      }
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/tenant/#{defaultTenantId}",
+      "body": {
+        "tenant": {
+          "themeId": "#{todoThemeId}"
         }
       }
     }
