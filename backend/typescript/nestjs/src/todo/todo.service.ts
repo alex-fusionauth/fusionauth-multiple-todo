@@ -6,7 +6,9 @@ export class TodoService {
   private readonly todos: Todo[] = [];
 
   create(todo: Todo) {
-    this.todos.push({ ...todo, date: Date.now() });
+    const updateTodo = { ...todo, date: Date.now() };
+    this.todos.push(updateTodo);
+    return updateTodo;
   }
 
   findAll(): Todo[] {

@@ -1,8 +1,8 @@
 export class CreateTodoDto {
-  todo: string;
+  title: string;
 }
 
 export class ListTodoDto {
   date?: number;
-  todo: string;
+  title: string;
 }
