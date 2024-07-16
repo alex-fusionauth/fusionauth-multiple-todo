@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Todo } from './interfaces/todo.interface';
 
 @Injectable()
-export class TodoService {
+export class Todo2Service {
   private readonly todos: Todo[] = [];
 
   create(todo: Todo) {
